@@ -1,0 +1,13 @@
+{
+  "app": {
+    "auth": {
+      "login": {},
+      "register": {}
+    },
+    "common": {
+      "welcome": "Welcome",
+      "logout": "Logout"
+    }
+  },
+  "admin_panel": {}
+}
