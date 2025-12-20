@@ -1,13 +1,121 @@
 {
   "app": {
     "auth": {
-      "login": {},
-      "register": {}
+      "login": {
+        "welcome": "Welcome Back!",
+        "please_login": "Please login to your account",
+        "forgot_password": "Forgot Password?",
+        "signing_in": "Signing in...",
+        "signin": "Sign In",
+        "dont_have_account": "Don't have an account?",
+        "signup": "Sign Up",
+        "login": "Login",
+        "register": "Register",
+        "login_failed": "Login failed. Please try again."
+      },
+      "register": {
+        "progress": {
+          "title": "Create your account",
+          "step_of": "Step {step} of 3"
+        },
+        "stepOne": {
+          "title": "Enter your details to create an account"
+        },
+        "stepTwo": {
+          "title": "Tell us about your company"
+        },
+        "stepThree": {
+          "title": "Finish creating your account"
+        },
+        "labels": {
+          "agentName": "Agent Name",
+          "jobTitle": "Agent Job Title",
+          "companyName": "Company Name",
+          "phoneNumber": "Phone Number",
+          "companyType": "Company type",
+          "companyWebsite": "Company Website",
+          "manufacturingStrategy": "Manufacturing Strategy",
+          "companyIndustry": "Company industry",
+          "companyAddress": "Company Address",
+          "uploadFiles": "Upload Files",
+          "email": "Email",
+          "password": "Password",
+          "confirmPassword": "Confirm Password"
+        },
+        "placeholders": {
+          "agentName": "Enter your agent name",
+          "jobTitle": "Enter agent job title",
+          "companyName": "Your company name",
+          "phoneNumber": "Phone number",
+          "companyType": "Select company type",
+          "companyWebsite": "www.example.com",
+          "manufacturingStrategy": "Your company Strategy",
+          "companyIndustry": "Select company industry",
+          "companyAddress": "Address",
+          "email": "Enter your email",
+          "password": "Enter your password",
+          "confirmPassword": "Confirm your password",
+          "selectOption": "Select an option"
+        },
+        "buttons": {
+          "next": "Next",
+          "signUp": "Sign Up",
+          "submitting": "Submitting..."
+        },
+        "success": {
+          "title": "Application submitted",
+          "description": "We’ll contact you soon."
+        },
+        "companyTypes": {
+          "supplier": "Supplier",
+          "manufacturer": "Manufacturer",
+          "distributor": "Distributor",
+          "retailer": "Retailer",
+          "serviceProvider": "Service Provider",
+          "wholesaler": "Wholesaler",
+          "eCommerce": "E-Commerce",
+          "franchise": "Franchise",
+          "cooperative": "Cooperative",
+          "holdingCompany": "Holding Company",
+          "consultancy": "Consultancy",
+          "logistics": "Logistics",
+          "other": "Other"
+        },
+        "companyIndustries": {
+          "agriculture": "Agriculture",
+          "automotive": "Automotive",
+          "banking": "Banking",
+          "construction": "Construction",
+          "education": "Education",
+          "healthcare": "Healthcare",
+          "hospitality": "Hospitality",
+          "manufacturing": "Manufacturing",
+          "retail": "Retail",
+          "technology": "Technology",
+          "telecommunications": "Telecommunications",
+          "transportation": "Transportation",
+          "other": "Other"
+        },
+        "companyManufacturingStrategies": {
+          "makeToStock": "Make to Stock",
+          "makeToOrder": "Make to Order",
+          "assembleToOrder": "Assemble to Order",
+          "engineerToOrder": "Engineer to Order"
+        }
+      }
     },
     "common": {
       "welcome": "Welcome",
       "logout": "Logout"
     }
+  },
+  "validation": {
+    "invalid_email": "Invalid email address",
+    "password_min": "Password must be at least 8 characters",
+    "required": "This field is required",
+    "passwords_mismatch": "Passwords do not match",
+    "upload_failed": "Upload failed",
+    "register_failed_generic": "Something went wrong while registering."
   },
   "admin_panel": {}
 }

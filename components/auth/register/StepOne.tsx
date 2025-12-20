@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { FormField } from "@/components/ui/form-field";
 import { validators } from "@/lib/validators";
+import { useTranslations } from "next-intl";
 
 export default function StepOne({
   onNext,
@@ -14,6 +15,8 @@ export default function StepOne({
     phoneNumber: string;
   }) => void;
 }) {
+  const t = useTranslations("app.auth.register");
+  const tv = useTranslations("validation");
   const [agentName, setAgentName] = useState("");
   const [jobTitle, setJobTitle] = useState("");
   const [company, setCompany] = useState("");
@@ -25,46 +28,58 @@ export default function StepOne({
     !validators.required(company) &&
     !validators.required(phoneNumber);
 
+  const translateValidation = (msg: string | null): string | null => {
+    if (!msg) return null;
+    switch (msg) {
+      case "Invalid email address":
+        return tv("invalid_email");
+      case "Password must be at least 8 characters":
+        return tv("password_min");
+      case "This field is required":
+        return tv("required");
+      default:
+        return msg;
+    }
+  };
+
   return (
     <>
-      <p className="text-left text-light-gray text-[14px] mb-3">
-        Enter your details to create an account{" "}
-      </p>
+      <p className="text-light-gray text-[14px] mb-3">{t("stepOne.title")}</p>
 
       <div className="space-y-4">
         <FormField
-          label="Agent Name"
-          placeholder="Enter your agent name"
+          label={t("labels.agentName")}
+          placeholder={t("placeholders.agentName")}
           value={agentName}
           onChange={setAgentName}
-          error={agentName && validators.required(agentName)}
+          error={agentName && translateValidation(validators.required(agentName))}
           required={true}
         />
 
         <FormField
-          label="Agent Job Title"
-          placeholder="Enter agent job title"
+          label={t("labels.jobTitle")}
+          placeholder={t("placeholders.jobTitle")}
           value={jobTitle}
           onChange={setJobTitle}
-          error={jobTitle && validators.required(jobTitle)}
+          error={jobTitle && translateValidation(validators.required(jobTitle))}
           required={true}
         />
 
         <FormField
-          label="Company Name"
-          placeholder="Your company name"
+          label={t("labels.companyName")}
+          placeholder={t("placeholders.companyName")}
           value={company}
           onChange={setCompany}
-          error={company && validators.required(company)}
+          error={company && translateValidation(validators.required(company))}
           required={true}
         />
 
         <FormField
-          label="Phone Number"
-          placeholder="Phone number"
+          label={t("labels.phoneNumber")}
+          placeholder={t("placeholders.phoneNumber")}
           value={phoneNumber}
           onChange={setPhoneNumber}
-          error={phoneNumber && validators.required(phoneNumber)}
+          error={phoneNumber && translateValidation(validators.required(phoneNumber))}
           required={true}
         />
 
@@ -80,7 +95,7 @@ export default function StepOne({
           }
           className="w-full bg-primary text-white py-2 rounded-md disabled:opacity-75 mt-5 uppercase"
         >
-          Next
+          {t("buttons.next")}
         </button>
       </div>
     </>

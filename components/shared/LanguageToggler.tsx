@@ -19,6 +19,8 @@ export default function LanguageToggler() {
 
   const switchLanguage = (requestedLocale: string) => {
     router.replace({ pathname }, { locale: requestedLocale });
+    // refresh the page to load locale-specific data
+    router.refresh();
   };
 
   return (

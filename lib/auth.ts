@@ -1,11 +1,11 @@
 import Cookies from "js-cookie";
 
 export function saveAuth({ token, user, company }: { token: string; user: any; company?: any }) {
-  Cookies.set("access_token", token, { expires: 1 });
-  Cookies.set("user", JSON.stringify(user), { expires: 1 });
+  Cookies.set("access_token", token, { expires: 7 });
+  Cookies.set("user", JSON.stringify(user), { expires: 7 });
 
   if (company) {
-    Cookies.set("company", JSON.stringify(company), { expires: 1 });
+    Cookies.set("company", JSON.stringify(company), { expires: 7 });
   }
 }
 

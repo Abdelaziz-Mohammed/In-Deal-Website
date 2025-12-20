@@ -3,49 +3,56 @@
 import { useState } from "react";
 import { FormField } from "@/components/ui/form-field";
 import { validators } from "@/lib/validators";
+import { useTranslations } from "next-intl";
 
 export default function StepThree({
   onSubmit,
+  submitting,
+  errors,
 }: {
   onSubmit: (data: { email: string; password: string }) => void;
+  submitting?: boolean;
+  errors?: string[];
 }) {
+  const t = useTranslations("app.auth.register");
+  const tv = useTranslations("validation");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const passwordError = validators.password(password);
   const confirmPasswordError =
-    confirmPassword && password !== confirmPassword ? "Passwords do not match" : null;
+    confirmPassword && password !== confirmPassword ? tv("passwords_mismatch") : null;
 
   const valid = !validators.email(email) && !passwordError && !confirmPasswordError;
 
   return (
     <>
-      <p className="text-left text-light-gray text-[14px] mb-3">Finish creating your account</p>
+      <p className="text-light-gray text-[14px] mb-3">{t("stepThree.title")}</p>
 
       <div className="space-y-4">
         <FormField
-          label="Email"
-          placeholder="Enter your email"
+          label={t("labels.email")}
+          placeholder={t("placeholders.email")}
           value={email}
           onChange={setEmail}
-          error={email && validators.email(email)}
+          error={email && translateValidation(validators.email(email), tv)}
           required={true}
         />
 
         <FormField
-          label="Password"
-          placeholder="Enter your password"
+          label={t("labels.password")}
+          placeholder={t("placeholders.password")}
           type="password"
           value={password}
           onChange={setPassword}
-          error={password && passwordError}
+          error={password && translateValidation(passwordError, tv)}
           required={true}
         />
 
         <FormField
-          label="Confirm Password"
-          placeholder="Confirm your password"
+          label={t("labels.confirmPassword")}
+          placeholder={t("placeholders.confirmPassword")}
           type="password"
           value={confirmPassword}
           onChange={setConfirmPassword}
@@ -54,13 +61,38 @@ export default function StepThree({
         />
 
         <button
-          disabled={!valid}
+          disabled={!valid || submitting}
           onClick={() => onSubmit({ email, password })}
-          className="w-full bg-blue-600 text-white py-2 rounded-md disabled:opacity-75 mt-5 uppercase"
+          className="w-full bg-primary text-white py-2 rounded-md disabled:opacity-75 mt-5 uppercase"
         >
-          Sign Up
+          {submitting ? t("buttons.submitting") : t("buttons.signUp")}
         </button>
+
+        {errors && errors.length > 0 && (
+          <div className="mt-3 text-xs text-red-600" aria-live="polite">
+            {errors.map((e, idx) => (
+              <div key={idx}>* {e}</div>
+            ))}
+          </div>
+        )}
       </div>
     </>
   );
+}
+
+function translateValidation(
+  msg: string | null,
+  tv: ReturnType<typeof useTranslations>
+): string | null {
+  if (!msg) return null;
+  switch (msg) {
+    case "Invalid email address":
+      return tv("invalid_email");
+    case "Password must be at least 8 characters":
+      return tv("password_min");
+    case "This field is required":
+      return tv("required");
+    default:
+      return msg;
+  }
 }

@@ -1,12 +1,14 @@
 "use client";
 
 import { Link, usePathname } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 
 export default function AuthNav() {
   const pathname = usePathname();
+  const t = useTranslations("app.auth.login");
 
   return (
-    <nav className="flex items-center justify-center px-12 pt-6 pb-10 gap-28 sm:gap-52">
+    <nav className="flex items-center justify-center ltr:px-12 rtl:px-0 pt-6 pb-10 gap-28 rtl:gap-12 sm:gap-52 rtl:sm:gap-28">
       <Link
         href="/auth/login"
         className={`${
@@ -15,7 +17,7 @@ export default function AuthNav() {
             : "text-light-gray"
         } font-medium`}
       >
-        Login
+        {t("login")}
       </Link>
       <Link
         href="/auth/register"
@@ -25,7 +27,7 @@ export default function AuthNav() {
             : "text-light-gray"
         } font-medium`}
       >
-        Register
+        {t("register")}
       </Link>
     </nav>
   );

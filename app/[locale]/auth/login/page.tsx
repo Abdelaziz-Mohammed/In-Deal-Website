@@ -8,8 +8,12 @@ import { KeyRound, Mail } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { login } from "@/lib/api/auth";
 import { saveAuth } from "@/lib/auth";
+import { useTranslations } from "next-intl";
 
 export default function LoginPage() {
+  const t = useTranslations("app.auth.login");
+  const tr = useTranslations("app.auth.register");
+  const tv = useTranslations("validation");
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -25,9 +29,10 @@ export default function LoginPage() {
 
       saveAuth({ token, user, company });
 
-      router.push("/");
+      router.push("/en/home");
     } catch (err: any) {
-      setError(err.response?.data?.message || "Login failed");
+      setError(err.response?.data?.message || t("login_failed"));
+      setTimeout(() => setError(""), 10000);
     } finally {
       setLoading(false);
     }
@@ -35,35 +40,33 @@ export default function LoginPage() {
 
   return (
     <div className="flex flex-col">
-      <h2 className="text-3xl text-black font-bold mb-0.5 text-center">Welcome Back!</h2>
-      <p className="text-sm font-normal text-light-gray text-center mb-7.5">
-        Please login to your account
-      </p>
+      <h2 className="text-3xl text-black font-bold mb-0.5 text-center">{t("welcome")}</h2>
+      <p className="text-sm font-normal text-light-gray text-center mb-7.5">{t("please_login")}</p>
       <div className="space-y-4">
         <FormField
-          label="Email"
-          placeholder="Email"
+          label={tr("labels.email")}
+          placeholder={tr("placeholders.email")}
           icon={Mail}
           value={email}
           onChange={setEmail}
-          error={email && emailError}
+          error={email && translateValidation(emailError, tv)}
           className="w-full"
         />
         <FormField
-          label="Password"
-          placeholder="Password"
+          label={tr("labels.password")}
+          placeholder={tr("placeholders.password")}
           icon={KeyRound}
           type="password"
           value={password}
           onChange={setPassword}
-          error={password && passwordError}
+          error={password && translateValidation(passwordError, tv)}
         />
         <div className="flex items-center justify-end mb-7">
           <Link
             href="/auth/forgot-password"
             className="text-sm text-[#0F0B03] hover:underline hover:text-primary hoverEffect"
           >
-            Forgot Password?
+            {t("forgot_password")}
           </Link>
         </div>
         <button
@@ -71,19 +74,36 @@ export default function LoginPage() {
           disabled={loading}
           className="w-full bg-primary text-white py-2 rounded-md uppercase"
         >
-          {loading ? "Signing in..." : "Sign In"}
+          {loading ? t("signing_in") : t("signin")}
         </button>
         {error && <p className="text-red-500 text-[13px] tracking-0.5">* {error}</p>}
         <div className="text-center text-sm text-[#0F0B03] mt-4">
-          Don&apos;t have an account?{" "}
+          {t("dont_have_account")}{" "}
           <Link
             href="/auth/register"
             className="text-[#D98C3A]/90 hover:text-[#D98C3A] hover:underline hoverEffect"
           >
-            Sign Up
+            {t("signup")}
           </Link>
         </div>
       </div>
     </div>
   );
+}
+
+function translateValidation(
+  msg: string | null,
+  tv: ReturnType<typeof useTranslations>
+): string | null {
+  if (!msg) return null;
+  switch (msg) {
+    case "Invalid email address":
+      return tv("invalid_email");
+    case "Password must be at least 8 characters":
+      return tv("password_min");
+    case "This field is required":
+      return tv("required");
+    default:
+      return msg;
+  }
 }

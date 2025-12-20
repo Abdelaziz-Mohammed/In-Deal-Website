@@ -16,8 +16,9 @@ export const metadata: Metadata = {
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const headersList = headers();
-  const locale = (await headersList).get("x-locale") ?? "en";
+  const headersList = await headers();
+  const locale =
+    headersList.get("x-locale") ?? headersList.get("x-middleware-request-locale") ?? "en";
 
   return (
     <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"}>

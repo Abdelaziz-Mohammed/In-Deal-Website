@@ -1,13 +1,121 @@
 {
   "app": {
     "auth": {
-      "login": {},
-      "register": {}
+      "login": {
+        "welcome": "مرحبًا بعودتك!",
+        "please_login": "الرجاء تسجيل الدخول إلى حسابك",
+        "forgot_password": "هل نسيت كلمة المرور؟",
+        "signing_in": "جاري تسجيل الدخول...",
+        "signin": "تسجيل الدخول",
+        "dont_have_account": "لا تملك حسابًا؟",
+        "signup": "إنشاء حساب",
+        "login": "تسجيل الدخول",
+        "register": "إنشاء حساب",
+        "login_failed": "فشل تسجيل الدخول. حاول مرة أخرى."
+      },
+      "register": {
+        "progress": {
+          "title": "أنشئ حسابك",
+          "step_of": "الخطوة {step} من 3"
+        },
+        "stepOne": {
+          "title": "أدخل بياناتك لإنشاء حساب"
+        },
+        "stepTwo": {
+          "title": "أخبرنا عن شركتك"
+        },
+        "stepThree": {
+          "title": "أكمل إنشاء حسابك"
+        },
+        "labels": {
+          "agentName": "اسم الوكيل",
+          "jobTitle": "المسمى الوظيفي للوكيل",
+          "companyName": "اسم الشركة",
+          "phoneNumber": "رقم الهاتف",
+          "companyType": "نوع الشركة",
+          "companyWebsite": "موقع الشركة",
+          "manufacturingStrategy": "استراتيجية التصنيع",
+          "companyIndustry": "قطاع الشركة",
+          "companyAddress": "عنوان الشركة",
+          "uploadFiles": "رفع الملفات",
+          "email": "البريد الإلكتروني",
+          "password": "كلمة المرور",
+          "confirmPassword": "تأكيد كلمة المرور"
+        },
+        "placeholders": {
+          "agentName": "أدخل اسم الوكيل",
+          "jobTitle": "أدخل المسمى الوظيفي",
+          "companyName": "اسم شركتك",
+          "phoneNumber": "رقم الهاتف",
+          "companyType": "اختر نوع الشركة",
+          "companyWebsite": "www.example.com",
+          "manufacturingStrategy": "استراتيجية شركتك",
+          "companyIndustry": "اختر قطاع الشركة",
+          "companyAddress": "العنوان",
+          "email": "أدخل بريدك الإلكتروني",
+          "password": "أدخل كلمة المرور",
+          "confirmPassword": "أعد إدخال كلمة المرور",
+          "selectOption": "اختر خيارًا"
+        },
+        "buttons": {
+          "next": "التالي",
+          "signUp": "إنشاء حساب",
+          "submitting": "جاري الإرسال..."
+        },
+        "success": {
+          "title": "تم إرسال الطلب",
+          "description": "سنتواصل معك قريبًا."
+        },
+        "companyTypes": {
+          "supplier": "مورد",
+          "manufacturer": "مصنّع",
+          "distributor": "موزّع",
+          "retailer": "تاجر تجزئة",
+          "serviceProvider": "مقدم خدمة",
+          "wholesaler": "تاجر جملة",
+          "eCommerce": "تجارة إلكترونية",
+          "franchise": "امتياز تجاري",
+          "cooperative": "تعاونية",
+          "holdingCompany": "شركة قابضة",
+          "consultancy": "استشارات",
+          "logistics": "خدمات لوجستية",
+          "other": "أخرى"
+        },
+        "companyIndustries": {
+          "agriculture": "الزراعة",
+          "automotive": "السيارات",
+          "banking": "المصارف",
+          "construction": "البناء",
+          "education": "التعليم",
+          "healthcare": "الرعاية الصحية",
+          "hospitality": "الضيافة",
+          "manufacturing": "التصنيع",
+          "retail": "البيع بالتجزئة",
+          "technology": "التكنولوجيا",
+          "telecommunications": "الاتصالات",
+          "transportation": "النقل",
+          "other": "أخرى"
+        },
+        "companyManufacturingStrategies": {
+          "makeToStock": "الإنتاج للمخزون",
+          "makeToOrder": "الإنتاج حسب الطلب",
+          "assembleToOrder": "التجميع حسب الطلب",
+          "engineerToOrder": "الهندسة حسب الطلب"
+        }
+      }
     },
     "common": {
       "welcome": "مرحبًا",
       "logout": "تسجيل خروج"
     }
+  },
+  "validation": {
+    "invalid_email": "بريد إلكتروني غير صالح",
+    "password_min": "يجب أن تكون كلمة المرور 8 أحرف على الأقل",
+    "required": "هذا الحقل مطلوب",
+    "passwords_mismatch": "كلمتا المرور غير متطابقتين",
+    "upload_failed": "فشل الرفع",
+    "register_failed_generic": "حدث خطأ أثناء التسجيل."
   },
   "admin_panel": {}
 }

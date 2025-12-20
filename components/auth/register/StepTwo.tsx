@@ -4,13 +4,9 @@ import { useState } from "react";
 import { FormField } from "@/components/ui/form-field";
 import { FileUploadField } from "@/components/ui/file-upload-field";
 import { validators } from "@/lib/validators";
+import { useTranslations } from "next-intl";
 
-import {
-  companyTypes,
-  companyIndustries,
-  companyManufacturingStrategies,
-  companyStates,
-} from "@/lib/constants";
+import { companyTypes, companyIndustries, companyManufacturingStrategies } from "@/lib/constants";
 
 export default function StepTwo({
   onNext,
@@ -20,16 +16,16 @@ export default function StepTwo({
     website: string;
     manufacturingStrategy: string;
     industry: string;
-    state: string;
     address: string;
     files: File[];
   }) => void;
 }) {
+  const t = useTranslations("app.auth.register");
+  const tv = useTranslations("validation");
   const [companyType, setCompanyType] = useState("");
   const [companyWebsite, setCompanyWebsite] = useState("");
   const [companyManufacturingStrategy, setCompanyManufacturingStrategy] = useState("");
   const [companyIndustry, setCompanyIndustry] = useState("");
-  const [companyState, setCompanyState] = useState("");
   const [companyAddress, setCompanyAddress] = useState("");
   const [companyFiles, setCompanyFiles] = useState<File[]>([]);
 
@@ -38,90 +34,82 @@ export default function StepTwo({
     !validators.required(companyWebsite) &&
     !validators.required(companyManufacturingStrategy) &&
     !validators.required(companyIndustry) &&
-    !validators.required(companyState) &&
     !validators.required(companyAddress) &&
     companyFiles.length > 0;
 
   return (
     <>
-      <p className="text-left text-light-gray text-[14px] mb-3">Tell us about your company</p>
+      <p className="text-light-gray text-[14px] mb-3">{t("stepTwo.title")}</p>
 
       <div className="space-y-4">
         <FormField
-          label="Company type"
-          placeholder="Select company type"
+          label={t("labels.companyType")}
+          placeholder={t("placeholders.companyType")}
           value={companyType}
           onChange={setCompanyType}
-          error={companyType && validators.required(companyType)}
+          error={companyType && translateValidation(validators.required(companyType), tv)}
           required={true}
           isDropdown={true}
           dropdownOptions={companyTypes.map((type) => ({
-            label: type.toLocaleLowerCase(),
+            label: t(`companyTypes.${type}`),
             value: type,
           }))}
         />
 
         <FormField
-          label="Company Website"
-          placeholder="www.example@gmail.com"
+          label={t("labels.companyWebsite")}
+          placeholder={t("placeholders.companyWebsite")}
           value={companyWebsite}
           onChange={setCompanyWebsite}
-          error={companyWebsite && validators.required(companyWebsite)}
+          error={companyWebsite && translateValidation(validators.required(companyWebsite), tv)}
           required={true}
         />
 
         <FormField
-          label="Manufacturing Strategy"
-          placeholder="Your company Strategy"
+          label={t("labels.manufacturingStrategy")}
+          placeholder={t("placeholders.manufacturingStrategy")}
           value={companyManufacturingStrategy}
           onChange={setCompanyManufacturingStrategy}
-          error={companyManufacturingStrategy && validators.required(companyManufacturingStrategy)}
+          error={
+            companyManufacturingStrategy &&
+            translateValidation(validators.required(companyManufacturingStrategy), tv)
+          }
           required={true}
           isDropdown={true}
           dropdownOptions={companyManufacturingStrategies.map((strategy) => ({
-            label: strategy.toLocaleLowerCase(),
+            label: t(`companyManufacturingStrategies.${strategy}`),
             value: strategy,
           }))}
         />
 
         <FormField
-          label="Company industry"
-          placeholder="Select company industry"
+          label={t("labels.companyIndustry")}
+          placeholder={t("placeholders.companyIndustry")}
           value={companyIndustry}
           onChange={setCompanyIndustry}
-          error={companyIndustry && validators.required(companyIndustry)}
+          error={companyIndustry && translateValidation(validators.required(companyIndustry), tv)}
           required={true}
           isDropdown={true}
           dropdownOptions={companyIndustries.map((industry) => ({
-            label: industry.toLocaleLowerCase(),
+            label: t(`companyIndustries.${industry}`),
             value: industry,
           }))}
         />
 
         <FormField
-          label="Company state"
-          placeholder="Select company state"
-          value={companyState}
-          onChange={setCompanyState}
-          error={companyState && validators.required(companyState)}
-          required={true}
-          isDropdown={true}
-          dropdownOptions={companyStates.map((state) => ({
-            label: state.toLocaleLowerCase(),
-            value: state,
-          }))}
-        />
-
-        <FormField
-          label="Company Address"
-          placeholder="Address"
+          label={t("labels.companyAddress")}
+          placeholder={t("placeholders.companyAddress")}
           value={companyAddress}
           onChange={setCompanyAddress}
-          error={companyAddress && validators.required(companyAddress)}
+          error={companyAddress && translateValidation(validators.required(companyAddress), tv)}
           required={true}
         />
 
-        <FileUploadField label="Upload Files" onChange={setCompanyFiles} required={true} />
+        <FileUploadField
+          label={t("labels.uploadFiles")}
+          onChange={setCompanyFiles}
+          required={true}
+        />
 
         <button
           disabled={!valid}
@@ -131,16 +119,32 @@ export default function StepTwo({
               website: companyWebsite,
               manufacturingStrategy: companyManufacturingStrategy,
               industry: companyIndustry,
-              state: companyState,
               address: companyAddress,
               files: companyFiles,
             })
           }
-          className="w-full bg-blue-600 text-white py-2 rounded-md disabled:opacity-75 mt-5 uppercase"
+          className="w-full bg-primary text-white py-2 rounded-md disabled:opacity-75 mt-5 uppercase"
         >
-          Next
+          {t("buttons.next")}
         </button>
       </div>
     </>
   );
+}
+
+function translateValidation(
+  msg: string | null,
+  tv: ReturnType<typeof useTranslations>
+): string | null {
+  if (!msg) return null;
+  switch (msg) {
+    case "Invalid email address":
+      return tv("invalid_email");
+    case "Password must be at least 8 characters":
+      return tv("password_min");
+    case "This field is required":
+      return tv("required");
+    default:
+      return msg;
+  }
 }
