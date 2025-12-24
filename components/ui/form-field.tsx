@@ -1,13 +1,15 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { LucideIcon } from "lucide-react";
+import { useState } from "react";
+import { LucideIcon, Eye, EyeOff } from "lucide-react";
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "./select";
 
 type Props = {
   label: string;
   value: string;
   onChange: (v: string) => void;
+  onBlur?: () => void;
   error?: string | null;
   placeholder?: string;
   type?: string;
@@ -22,6 +24,7 @@ export function FormField({
   label,
   value,
   onChange,
+  onBlur,
   error,
   placeholder,
   type = "text",
@@ -31,11 +34,15 @@ export function FormField({
   isDropdown = false,
   dropdownOptions = [],
 }: Props) {
+  const [showPassword, setShowPassword] = useState(false);
+
+  const isPassword = type === "password";
   const isValid = Boolean(value) && !error;
 
   const fieldClasses = cn(
     "w-full rounded-md border px-3 py-2 outline-none transition placeholder:text-sm",
     Icon && "pl-10",
+    isPassword && "pr-10",
     error && "border-red-500 focus:ring-red-500",
     isValid && "border-green-500 focus:ring-green-500"
   );
@@ -56,10 +63,22 @@ export function FormField({
           <input
             value={value}
             onChange={(e) => onChange(e.target.value)}
-            type={type}
+            onBlur={onBlur}
+            type={isPassword && showPassword ? "text" : type}
             placeholder={placeholder}
             className={fieldClasses}
           />
+        )}
+        {/* show/hide password eye */}
+        {isPassword && (
+          <button
+            type="button"
+            onClick={() => setShowPassword((v) => !v)}
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition"
+            aria-label={showPassword ? "Hide password" : "Show password"}
+          >
+            {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+          </button>
         )}
         {isDropdown && (
           <Select value={value} onValueChange={onChange}>

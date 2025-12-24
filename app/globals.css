@@ -146,6 +146,7 @@
 /* custom scroll bar */
 ::-webkit-scrollbar {
   width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
@@ -156,4 +157,21 @@
   background-color: #1A53A0;
   background-image: #1A53A0;
   border-radius: 8px;
+}
+
+/* Hide default password reveal UI */
+/* Chrome, Edge, Safari */
+input[type="password"]::-webkit-textfield-decoration-container {
+  display: none !important;
+}
+
+/* Edge (legacy & Chromium) */
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+  display: none !important;
+}
+
+/* Firefox (no native eye, but keep consistent) */
+input[type="password"] {
+  -moz-appearance: textfield;
 }

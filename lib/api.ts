@@ -38,7 +38,10 @@ api.interceptors.response.use(
       Cookies.remove("company");
 
       if (typeof window !== "undefined") {
-        window.location.href = "/auth/login";
+        const currentPath = window.location.pathname;
+        const isAdminRoute = currentPath.startsWith("/admin");
+        const loginUrl = isAdminRoute ? "/admin/auth/login" : "/auth/login";
+        window.location.href = loginUrl;
       }
     }
 

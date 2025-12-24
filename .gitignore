@@ -41,3 +41,11 @@ yarn-error.log*
 next-env.d.ts
 
 .prettierrc
+
+# ignore admin docs for now
+ADMIN_COMPONENTS_API.md
+ADMIN_PANEL_CHECKLIST.md
+ADMIN_PANEL_IMPLEMENTATION.md
+ADMIN_PANEL_QUICKSTART.md
+ADMIN_PANEL_README.md
+ADMIN_PANEL_VISUAL_GUIDE.md
