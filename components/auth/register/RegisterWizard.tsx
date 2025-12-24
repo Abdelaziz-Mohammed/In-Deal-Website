@@ -21,7 +21,6 @@ type StepOneData = {
 type StepTwoData = {
   companyType: string;
   website: string;
-  manufacturingStrategy: string;
   industry: string;
   address: string;
   files: File[];
@@ -70,7 +69,6 @@ export default function RegisterWizard() {
         website: stepTwoData.website,
         companyType: stepTwoData.companyType,
         companyIndustry: stepTwoData.industry,
-        manufacturingStrategy: stepTwoData.manufacturingStrategy,
       },
     };
 

@@ -22,7 +22,6 @@ export type RegisterPayload = {
     website: string;
     companyType: string;
     companyIndustry: string;
-    manufacturingStrategy: string;
   };
 };
 
