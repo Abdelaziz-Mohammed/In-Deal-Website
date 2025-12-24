@@ -89,7 +89,7 @@ export default function AdminRequestsPage() {
     <>
       <AdminNavbar title="Requests" />
       <div className="flex-1 overflow-y-auto">
-        <Container className="py-8 px-1">
+        <div className="py-4 px-2">
           <div className="bg-white rounded-xl shadow-sm border overflow-hidden">
             {/* Table Header Info */}
             <div className="px-6 py-4 border-b border-gray-200">
@@ -214,7 +214,7 @@ export default function AdminRequestsPage() {
               </div>
             )}
           </div>
-        </Container>
+        </div>
       </div>
 
       {/* Uploads Modal */}

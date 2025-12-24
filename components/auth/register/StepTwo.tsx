@@ -6,7 +6,7 @@ import { FileUploadField } from "@/components/ui/file-upload-field";
 import { validators } from "@/lib/validators";
 import { useTranslations } from "next-intl";
 
-import { companyTypes, companyIndustries, companyManufacturingStrategies } from "@/lib/constants";
+import { companyTypes, companyIndustries } from "@/lib/constants";
 
 export default function StepTwo({
   onNext,
@@ -14,7 +14,6 @@ export default function StepTwo({
   onNext: (data: {
     companyType: string;
     website: string;
-    manufacturingStrategy: string;
     industry: string;
     address: string;
     files: File[];
@@ -24,7 +23,6 @@ export default function StepTwo({
   const tv = useTranslations("validation");
   const [companyType, setCompanyType] = useState("");
   const [companyWebsite, setCompanyWebsite] = useState("");
-  const [companyManufacturingStrategy, setCompanyManufacturingStrategy] = useState("");
   const [companyIndustry, setCompanyIndustry] = useState("");
   const [companyAddress, setCompanyAddress] = useState("");
   const [companyFiles, setCompanyFiles] = useState<File[]>([]);
@@ -32,7 +30,6 @@ export default function StepTwo({
   const valid =
     !validators.required(companyType) &&
     !validators.required(companyWebsite) &&
-    !validators.required(companyManufacturingStrategy) &&
     !validators.required(companyIndustry) &&
     !validators.required(companyAddress) &&
     companyFiles.length > 0;
@@ -63,23 +60,6 @@ export default function StepTwo({
           onChange={setCompanyWebsite}
           error={companyWebsite && translateValidation(validators.required(companyWebsite), tv)}
           required={true}
-        />
-
-        <FormField
-          label={t("labels.manufacturingStrategy")}
-          placeholder={t("placeholders.manufacturingStrategy")}
-          value={companyManufacturingStrategy}
-          onChange={setCompanyManufacturingStrategy}
-          error={
-            companyManufacturingStrategy &&
-            translateValidation(validators.required(companyManufacturingStrategy), tv)
-          }
-          required={true}
-          isDropdown={true}
-          dropdownOptions={companyManufacturingStrategies.map((strategy) => ({
-            label: t(`companyManufacturingStrategies.${strategy}`),
-            value: strategy,
-          }))}
         />
 
         <FormField
@@ -117,7 +97,6 @@ export default function StepTwo({
             onNext({
               companyType,
               website: companyWebsite,
-              manufacturingStrategy: companyManufacturingStrategy,
               industry: companyIndustry,
               address: companyAddress,
               files: companyFiles,
