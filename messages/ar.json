@@ -13,6 +13,40 @@
         "register": "إنشاء حساب",
         "login_failed": "فشل تسجيل الدخول. حاول مرة أخرى."
       },
+      "forgotPassword": {
+        "title": "نسيت كلمة المرور",
+        "description": "أدخل بريدك الإلكتروني وسنرسل لك رمز OTP لإعادة تعيين كلمة المرور",
+        "email_label": "البريد الإلكتروني",
+        "email_placeholder": "أدخل بريدك الإلكتروني",
+        "send_otp": "إرسال رمز التحقق",
+        "sending_otp": "جاري الإرسال...",
+        "back_to_login": "العودة لتسجيل الدخول",
+        "otp_sent": "تم إرسال رمز التحقق بنجاح",
+        "error_sending_otp": "فشل إرسال رمز التحقق. حاول مرة أخرى."
+      },
+      "verifyOtp": {
+        "title": "التحقق من الرمز",
+        "description": "أدخل رمز التحقق المرسل إلى بريدك الإلكتروني",
+        "otp_label": "رمز التحقق",
+        "otp_placeholder": "أدخل الرمز المكون من 6 أرقام",
+        "verify": "تحقق",
+        "verifying": "جاري التحقق...",
+        "resend_otp": "إعادة إرسال الرمز",
+        "otp_verified": "تم التحقق من الرمز بنجاح",
+        "error_verifying_otp": "رمز غير صحيح. حاول مرة أخرى."
+      },
+      "resetPassword": {
+        "title": "إعادة تعيين كلمة المرور",
+        "description": "أدخل كلمة المرور الجديدة",
+        "new_password_label": "كلمة المرور الجديدة",
+        "new_password_placeholder": "أدخل كلمة المرور الجديدة",
+        "confirm_password_label": "تأكيد كلمة المرور",
+        "confirm_password_placeholder": "أعد إدخال كلمة المرور",
+        "reset_password": "إعادة تعيين كلمة المرور",
+        "resetting": "جاري إعادة التعيين...",
+        "password_reset_success": "تم إعادة تعيين كلمة المرور بنجاح",
+        "error_resetting_password": "فشل إعادة تعيين كلمة المرور. حاول مرة أخرى."
+      },
       "register": {
         "progress": {
           "title": "أنشئ حسابك",
@@ -115,7 +149,10 @@
     "required": "هذا الحقل مطلوب",
     "passwords_mismatch": "كلمتا المرور غير متطابقتين",
     "upload_failed": "فشل الرفع",
-    "register_failed_generic": "حدث خطأ أثناء التسجيل."
+    "register_failed_generic": "حدث خطأ أثناء التسجيل.",
+    "otp_required": "رمز التحقق مطلوب",
+    "otp_invalid": "يجب أن يكون رمز التحقق مكونًا من 6 أرقام",
+    "email_required": "البريد الإلكتروني مطلوب"
   },
   "admin_panel": {}
 }

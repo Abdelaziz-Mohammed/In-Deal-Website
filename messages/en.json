@@ -13,6 +13,40 @@
         "register": "Register",
         "login_failed": "Login failed. Please try again."
       },
+      "forgotPassword": {
+        "title": "Forgot Password",
+        "description": "Enter your email address and we'll send you an OTP to reset your password",
+        "email_label": "Email",
+        "email_placeholder": "Enter your email",
+        "send_otp": "Send OTP",
+        "sending_otp": "Sending OTP...",
+        "back_to_login": "Back to Login",
+        "otp_sent": "OTP sent successfully",
+        "error_sending_otp": "Failed to send OTP. Please try again."
+      },
+      "verifyOtp": {
+        "title": "Verify OTP",
+        "description": "Enter the OTP code sent to your email",
+        "otp_label": "OTP Code",
+        "otp_placeholder": "Enter 6-digit OTP",
+        "verify": "Verify",
+        "verifying": "Verifying...",
+        "resend_otp": "Resend OTP",
+        "otp_verified": "OTP verified successfully",
+        "error_verifying_otp": "Invalid OTP. Please try again."
+      },
+      "resetPassword": {
+        "title": "Reset Password",
+        "description": "Enter your new password",
+        "new_password_label": "New Password",
+        "new_password_placeholder": "Enter new password",
+        "confirm_password_label": "Confirm Password",
+        "confirm_password_placeholder": "Confirm your password",
+        "reset_password": "Reset Password",
+        "resetting": "Resetting...",
+        "password_reset_success": "Password reset successfully",
+        "error_resetting_password": "Failed to reset password. Please try again."
+      },
       "register": {
         "progress": {
           "title": "Create your account",
@@ -115,7 +149,10 @@
     "required": "This field is required",
     "passwords_mismatch": "Passwords do not match",
     "upload_failed": "Upload failed",
-    "register_failed_generic": "Something went wrong while registering."
+    "register_failed_generic": "Something went wrong while registering.",
+    "otp_required": "OTP code is required",
+    "otp_invalid": "OTP must be 6 digits",
+    "email_required": "Email is required"
   },
   "admin_panel": {}
 }

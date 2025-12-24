@@ -91,3 +91,23 @@ export function logout() {
   clearAuth();
   window.location.href = "/auth/login";
 }
+
+export async function forgotPassword(email: string) {
+  const { data } = await api.post("/auth/forgot-password", { email });
+  return data;
+}
+
+export async function verifyOtp(email: string, otp: string) {
+  const { data } = await api.post("/auth/verify-otp", { email, otp });
+  return data;
+}
+
+export async function resetPassword(payload: {
+  email: string;
+  otp: string;
+  password: string;
+  confirmPassword: string;
+}) {
+  const { data } = await api.post("/auth/reset-password", payload);
+  return data;
+}
